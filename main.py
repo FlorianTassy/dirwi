@@ -1,3 +1,6 @@
+from api import get_btc_price
+from calcul import value_at_target
+
 def ask_number(question):
     while True:
         answer = input(question).replace(" ", "").replace(",", ".")
@@ -16,6 +19,11 @@ def format_dollar(amount):
 def main():
     price = ask_number("Item price in $ : ")
     target = ask_number("Your BTC target in $ : ")
+
+    btc_price = get_btc_price()
+    value = value_at_target(price, target, btc_price)
+
+    print(f"This item would be worth {format_dollar(value)} at a BTC price of {format_dollar(target)}.")
 
 if __name__ == "__main__":
     main()
